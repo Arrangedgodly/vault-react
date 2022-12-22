@@ -1,0 +1,57 @@
+.counts__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.5vh;
+  height: 85vh;
+}
+
+.counts__header {
+  font-size: 4.5vw;
+  margin: 1.5vh auto;
+}
+
+.counts__label {
+  font-size: 5vw;
+}
+
+.counts__input {
+  margin-right: 1.5vw;
+}
+
+.counts {
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+}
+
+.counts__buttons {
+  width: 95vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.counts__button {
+  width: 30vw;
+  border: none;
+  background-color: rgba(0,0,0,0);
+  cursor: pointer;
+  font-size: 2.5vw;
+  margin-bottom: 1vh;
+}
+
+.counts__value {
+  font-size: 2.25vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+}
+
+.counts__coin {
+  grid-column: 1;
+}
+
+.counts__bill {
+  grid-column: 2;
+}

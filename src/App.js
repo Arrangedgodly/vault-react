@@ -4,6 +4,7 @@ import Counts from './components/Counts';
 import { Routes, Route } from 'react-router-dom';
 import React from 'react';
 import { CurrentSafeTotalContext } from './contexts/CurrentSafeTotalContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const safe = React.useContext(CurrentSafeTotalContext);
