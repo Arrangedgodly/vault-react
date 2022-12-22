@@ -154,7 +154,7 @@ function Counts() {
                     <li>Tens: {count.count[6].value}</li>
                     <li>Large Bills: {count.count[7].value}</li>
                   </div>
-                  <li>Total Count: {count.count[0].value + count.count[1].value + count.count[2].value + count.count[3].value + count.count[4].value + count.count[5].value + count.count[6].value + count.count[7].value}</li>
+                  <li className='counts__final'>Total Count: {count.count[0].value + count.count[1].value + count.count[2].value + count.count[3].value + count.count[4].value + count.count[5].value + count.count[6].value + count.count[7].value}</li>
                 </Accordion.Body>
               </Accordion.Item>
           ))}

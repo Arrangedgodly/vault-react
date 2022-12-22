@@ -50,8 +50,14 @@
 
 .counts__coin {
   grid-column: 1;
+  color: rgb(187, 54, 54);
 }
 
 .counts__bill {
   grid-column: 2;
+  color: rgb(67, 50, 212);
+}
+
+.counts__final {
+  color:rgb(10, 168, 18);
 }
