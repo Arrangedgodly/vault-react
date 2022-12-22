@@ -44,7 +44,7 @@ function Safe() {
               <div className="count" id="totalCount">
                 {safeTotal}
               </div>
-              <div className="confirmation">
+              <div className={safeTotal === 6500 ? "confirmation confirmation__yes" : "confirmation"}>
               <p className="confirmation__text">PERIOD</p>
               <p className="confirmation__text">POOH!</p>
               </div>

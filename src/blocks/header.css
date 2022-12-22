@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 2.5vh;
+  row-gap: 1.5vh;
   justify-content: center;
   background-color: #081C15;
 }
@@ -16,6 +16,20 @@
 .header__icon {
   width: 4vw;
   height: 4vw;
+}
+
+.header__links {
+  display: flex;
+  width: 85%;
+  justify-content: space-around;
+}
+
+.header__link {
+  margin-top: .5vh;
+  color: #fff;
+  text-decoration: none;
+  font-style: normal;
+  font-size: 3.25vw;
 }
 
 @media screen and (max-width: 720px) {

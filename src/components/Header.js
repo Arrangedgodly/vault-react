@@ -1,5 +1,6 @@
 import vaultAlt from "../images/vault-alt.svg";
 import calculatorAlt from "../images/calculator-alt.svg";
+import { Link } from 'react-router-dom';
 
 function Header() {
     return (
@@ -16,6 +17,14 @@ function Header() {
                 alt="calculator icon"
                 className="header__icon"
             />
+            </div>
+            <div className="header__links">
+              <Link to='/'>
+                <p className="header__link">Counter</p>
+              </Link>
+              <Link to='/counts'>
+                <p className="header__link">Previous Counts</p>
+              </Link>
             </div>
       </header>
     );
