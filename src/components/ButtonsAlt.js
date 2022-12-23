@@ -2,38 +2,45 @@ import React from "react";
 import { CurrentSafeTotalContext } from '../contexts/CurrentSafeTotalContext';
 
 function ButtonsAlt({ handleSafeTotal }) {
-    const [twentyTracker, setTwentyTracker] = React.useState(0);
-    const [fiftyTracker, setFiftyTracker] = React.useState(0);
-    const [hundredTracker, setHundredTracker] = React.useState(0);
-    const [totalTracker, setTotalTracker] = React.useState(0);
+    const [twentyTracker, setTwentyTracker] = React.useState(localStorage.getItem('Twenties') | 0);
+    const [fiftyTracker, setFiftyTracker] = React.useState(localStorage.getItem('Fifties') | 0);
+    const [hundredTracker, setHundredTracker] = React.useState(localStorage.getItem('Hundreds') | 0);
+    const [totalTracker, setTotalTracker] = React.useState(localStorage.getItem('Large Bills') | 0);
     const safe = React.useContext(CurrentSafeTotalContext);
 
     const setTwenty = (e) => {
         if (e.target.value < 0) {
             setTwentyTracker(0);
+            localStorage.setItem('Twenties', 0);
         } else {
             setTwentyTracker(e.target.value);
+            localStorage.setItem('Twenties', e.target.value);
         }
     }
 
     const setFifty = (e) => {
         if (e.target.value < 0) {
             setFiftyTracker(0);
+            localStorage.setItem('Fifties', 0);
         } else {
             setFiftyTracker(e.target.value);
+            localStorage.setItem('Fifties', e.target.value);
         }
     }
 
     const setHundred = (e) => {
         if (e.target.value < 0) {
             setHundredTracker(0);
+            localStorage.setItem('Hundreds', 0);
         } else {
             setHundredTracker(e.target.value);
+            localStorage.setItem('Hundreds', e.target.value);
         }
     }
 
     const checkTotals = () => {
         setTotalTracker((twentyTracker * 20) + (fiftyTracker * 50) + (hundredTracker * 100));
+        localStorage.setItem('Large Bills', totalTracker);
     }
 
     const handleDenominationTotal = () => {

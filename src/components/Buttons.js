@@ -2,29 +2,34 @@ import React from "react";
 import { CurrentSafeTotalContext } from '../contexts/CurrentSafeTotalContext';
 
 function Buttons({ solo, group, single, bunch, container, button, count, square, name, handleSafeTotal }) {
-    const [singleTracker, setSingleTracker] = React.useState(0);
-    const [bunchTracker, setBunchTracker] = React.useState(0);
-    const [totalTracker, setTotalTracker] = React.useState(0);
+    const [singleTracker, setSingleTracker] = React.useState(localStorage.getItem(solo) | 0);
+    const [bunchTracker, setBunchTracker] = React.useState(localStorage.getItem(group) | 0);
+    const [totalTracker, setTotalTracker] = React.useState(localStorage.getItem(name) | 0);
     const safe = React.useContext(CurrentSafeTotalContext);
 
     const setSingle = (e) => {
         if (e.target.value < 0) {
             setSingleTracker(0);
+            localStorage.setItem(solo, 0);
         } else {
-            setSingleTracker(e.target.value)
+            setSingleTracker(e.target.value);
+            localStorage.setItem(solo, e.target.value);
         } 
     }
 
     const setBunch = (e) => {
         if (e.target.value < 0) {
             setBunchTracker(0);
+            localStorage.setItem(group, 0);
         } else {
-            setBunchTracker(e.target.value)
+            setBunchTracker(e.target.value);
+            localStorage.setItem(group, e.target.value);
         }
     }
 
     const checkTotals = () => {
         setTotalTracker((single * singleTracker) + (bunch * bunchTracker));
+        localStorage.setItem(name, totalTracker);
     }
 
     const handleDenominationTotal = () => {
