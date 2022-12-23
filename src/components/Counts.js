@@ -4,18 +4,12 @@ import { getStoreCount, postStoreCount } from '../utils/api';
 import { CurrentSafeTotalContext } from "../contexts/CurrentSafeTotalContext";
 
 function Counts() {
-  const [store, setStore] = React.useState(null);
+  const [store, setStore] = React.useState(localStorage.getItem('store'));
   const [prevCounts, setPrevCounts] = React.useState([]);
   const safe = React.useContext(CurrentSafeTotalContext);
 
   const handleInput = (e) => {
     setStore(e.target.value);
-  }
-
-  const handleFetchStoreCounts = () => {
-    getStoreCount(store)
-      .then(res => setPrevCounts(res))
-      .catch(err => console.log(err));
   }
 
   const handlePostStoreCount = () => {
@@ -29,10 +23,20 @@ function Counts() {
       {name: 'Tens', value: safe.Tens},
       {name: 'Large Bills', value: safe['Large Bills']},
     ];
-    postStoreCount(store, safe)
+    postStoreCount(store, count)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   }
+
+  React.useEffect(() => {
+    localStorage.setItem('store', store);
+  }, [store])
+
+  React.useEffect(() => {
+    getStoreCount(store)
+      .then(res => setPrevCounts(res))
+      .catch(err => console.log(err));
+  }, [store])
 
   return (
     <main>
@@ -147,20 +151,12 @@ function Counts() {
       ) : (
       <div className='counts'>
         <h3 className='counts__header'>Your Store is: {store}</h3>
-        <div className='counts__buttons'>
-          <button
-            className='counts__button'
-            onClick={handleFetchStoreCounts}
-          >Fetch Previous Counts</button>
-          <button
-            className='counts__button'
-            onClick={handlePostStoreCount}
-          >Post Current Count</button>
-        </div>
         <Accordion className='counts__prev'>
           {prevCounts.map(count => (
               <Accordion.Item eventKey={count._id} key={count._id}>
-                <Accordion.Header>{count.date}</Accordion.Header>
+                <Accordion.Header>
+                  {count.date}
+                </Accordion.Header>
                 <Accordion.Body className='counts__value'>
                   <div className='counts__coin'>
                     <li>Pennies: {count.count[0].value}</li>
@@ -175,6 +171,12 @@ function Counts() {
                     <li>Large Bills: {count.count[7].value}</li>
                   </div>
                   <li className='counts__final'>Total Count: {count.count[0].value + count.count[1].value + count.count[2].value + count.count[3].value + count.count[4].value + count.count[5].value + count.count[6].value + count.count[7].value}</li>
+                  <button
+                    type='button'
+                    className='counts__delete'
+                  >
+                    Delete
+                  </button>
                 </Accordion.Body>
               </Accordion.Item>
           ))}
