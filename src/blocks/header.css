@@ -32,6 +32,10 @@
   font-size: 3.25vw;
 }
 
+.header__link-active {
+  color: rgb(6, 163, 90);
+}
+
 @media screen and (max-width: 720px) {
   .header {
     height: 15vh;

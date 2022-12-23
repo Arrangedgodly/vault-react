@@ -1,6 +1,6 @@
 import vaultAlt from "../images/vault-alt.svg";
 import calculatorAlt from "../images/calculator-alt.svg";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Header() {
     return (
@@ -19,12 +19,18 @@ function Header() {
             />
             </div>
             <div className="header__links">
-              <Link to='/'>
-                <p className="header__link">Counter</p>
-              </Link>
-              <Link to='/counts'>
-                <p className="header__link">Previous Counts</p>
-              </Link>
+              <NavLink 
+                to='/' 
+                className={({ isActive }) => isActive ? 'header__link header__link-active' : 'header__link'}
+              >
+                Counter
+              </NavLink>
+              <NavLink 
+                to='/counts' 
+                className={({ isActive }) => isActive ? 'header__link header__link-active' : 'header__link'}
+              >
+                Previous Counts
+              </NavLink>
             </div>
       </header>
     );
