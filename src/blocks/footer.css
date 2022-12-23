@@ -1,0 +1,12 @@
+.footer__buttons {
+  display: flex;
+  width: 90vw;
+  justify-content: space-around;
+  position: absolute;
+}
+
+.footer__button {
+  border: none;
+  background-color: rgba(0,0,0,0);
+  color: #fff;
+}
