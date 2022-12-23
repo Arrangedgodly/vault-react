@@ -1,18 +1,37 @@
 import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
-import { getStoreCount } from '../utils/api';
+import { getStoreCount, postStoreCount } from '../utils/api';
+import { CurrentSafeTotalContext } from "../contexts/CurrentSafeTotalContext";
 
 function Counts() {
   const [store, setStore] = React.useState(null);
   const [prevCounts, setPrevCounts] = React.useState([]);
+  const safe = React.useContext(CurrentSafeTotalContext);
 
   const handleInput = (e) => {
     setStore(e.target.value);
   }
 
-  const handleStoreCount = () => {
+  const handleFetchStoreCounts = () => {
     getStoreCount(store)
-      .then(res => setPrevCounts(res));
+      .then(res => setPrevCounts(res))
+      .catch(err => console.log(err));
+  }
+
+  const handlePostStoreCount = () => {
+    const count = [
+      {name: 'Pennies', value: safe.Pennies},
+      {name: 'Nickels', value: safe.Nickels},
+      {name: 'Dimes', value: safe.Dimes},
+      {name: 'Quarters', value: safe.Quarters},
+      {name: 'Dollars', value: safe.Dollars},
+      {name: 'Fives', value: safe.Fives},
+      {name: 'Tens', value: safe.Tens},
+      {name: 'Large Bills', value: safe['Large Bills']},
+    ];
+    postStoreCount(store, safe)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   }
 
   return (
@@ -131,10 +150,11 @@ function Counts() {
         <div className='counts__buttons'>
           <button
             className='counts__button'
-            onClick={handleStoreCount}
+            onClick={handleFetchStoreCounts}
           >Fetch Previous Counts</button>
           <button
             className='counts__button'
+            onClick={handlePostStoreCount}
           >Post Current Count</button>
         </div>
         <Accordion className='counts__prev'>

@@ -13,3 +13,17 @@ export const getStoreCount = (store) => {
   })
     .then(checkResponse);
 }
+
+export const postStoreCount = (store, count) => {
+  return fetch(`${baseUrl}/`, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify({
+      store: store,
+      count: count
+    })
+  })
+    .then(checkResponse);
+}
