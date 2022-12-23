@@ -27,3 +27,16 @@ export const postStoreCount = (store, count) => {
   })
     .then(checkResponse);
 }
+
+export const deleteCount = (id) => {
+  return fetch(`${baseUrl}/:id`, {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: {
+      _id: id
+    }
+  })
+    .then(checkResponse);
+}

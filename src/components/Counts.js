@@ -1,15 +1,25 @@
 import React from 'react';
+import DeleteModal from './DeleteModal';
 import Accordion from 'react-bootstrap/Accordion';
 import { getStoreCount, postStoreCount } from '../utils/api';
 import { CurrentSafeTotalContext } from "../contexts/CurrentSafeTotalContext";
 
 function Counts() {
   const [store, setStore] = React.useState(localStorage.getItem('store'));
+  const [isOpen, setIsOpen] = React.useState(false);
   const [prevCounts, setPrevCounts] = React.useState([]);
   const safe = React.useContext(CurrentSafeTotalContext);
 
   const handleInput = (e) => {
     setStore(e.target.value);
+  }
+
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  }
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
   }
 
   const handlePostStoreCount = () => {
@@ -174,6 +184,7 @@ function Counts() {
                   <button
                     type='button'
                     className='counts__delete'
+                    onClick={handleOpenModal}
                   >
                     Delete
                   </button>
@@ -181,6 +192,10 @@ function Counts() {
               </Accordion.Item>
           ))}
         </Accordion>
+        <DeleteModal 
+          isOpen={isOpen}
+          handleClose={handleCloseModal}
+        />
       </div>
       )} 
     </main>
