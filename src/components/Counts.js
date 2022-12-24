@@ -1,5 +1,5 @@
 import React from 'react';
-import DeleteModal from './DeleteModal';
+import DeletePopup from './DeletePopup';
 import Accordion from 'react-bootstrap/Accordion';
 import { getStoreCount, postStoreCount } from '../utils/api';
 import { CurrentSafeTotalContext } from "../contexts/CurrentSafeTotalContext";
@@ -192,7 +192,7 @@ function Counts() {
               </Accordion.Item>
           ))}
         </Accordion>
-        <DeleteModal 
+        <DeletePopup 
           isOpen={isOpen}
           handleClose={handleCloseModal}
         />

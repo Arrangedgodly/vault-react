@@ -1,25 +1,25 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function DeleteModal({ isOpen, handleClose }) {
+function Popup({ modalTitle, modalText, modalButtonText, isOpen, handleClose, handleSubmit }) {
   return (
-    <Modal show={isOpen} onHide={handleClose} >
+    <Modal show={isOpen} onHide={handleClose} className='popup' >
       <Modal.Header closeButton>
-        <Modal.Title>Delete Confirmation</Modal.Title>
+        <Modal.Title>{modalTitle}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        Are you sure you would like to delete the selected count? This action can not be reversed.
+        {modalText}
       </Modal.Body>
       <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Delete Count
+          <Button variant="primary" onClick={handleSubmit}>
+            {modalButtonText}
           </Button>
         </Modal.Footer>
     </Modal>
   );
 }
 
-export default DeleteModal;
+export default Popup;
