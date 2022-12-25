@@ -91,7 +91,7 @@ const defaultSafe = {
 
 const convertDateToString = (date) => {
   const today = new Date(date);
-  return today.toDateString();
+  return today.toLocaleString();
 }
 
 export {buttonsData, defaultSafe, convertDateToString};
