@@ -87,6 +87,11 @@ const defaultSafe = {
   'Fives': 0,
   'Tens': 0,
   'Large Bills': 0
+};
+
+const convertDateToString = (date) => {
+  const today = new Date(date);
+  return today.toDateString();
 }
 
-export {buttonsData, defaultSafe};
+export {buttonsData, defaultSafe, convertDateToString};

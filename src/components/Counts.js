@@ -1,18 +1,15 @@
 import React from 'react';
 import DeletePopup from './DeletePopup';
 import Accordion from 'react-bootstrap/Accordion';
-import { getStoreCount, postStoreCount } from '../utils/api';
-import { CurrentSafeTotalContext } from "../contexts/CurrentSafeTotalContext";
+import { getStoreCount, deleteCount } from '../utils/api';
+import { convertDateToString } from '../utils/constants';
+import { CurrentStoreContext } from '../contexts/CurrentStoreContext';
 
-function Counts() {
-  const [store, setStore] = React.useState(localStorage.getItem('store'));
+function Counts({ handleInput }) {
+  const store = React.useContext(CurrentStoreContext);
   const [isOpen, setIsOpen] = React.useState(false);
+  const [activeCount, setActiveCount] = React.useState('');
   const [prevCounts, setPrevCounts] = React.useState([]);
-  const safe = React.useContext(CurrentSafeTotalContext);
-
-  const handleInput = (e) => {
-    setStore(e.target.value);
-  }
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -22,20 +19,12 @@ function Counts() {
     setIsOpen(false);
   }
 
-  const handlePostStoreCount = () => {
-    const count = [
-      {name: 'Pennies', value: safe.Pennies},
-      {name: 'Nickels', value: safe.Nickels},
-      {name: 'Dimes', value: safe.Dimes},
-      {name: 'Quarters', value: safe.Quarters},
-      {name: 'Dollars', value: safe.Dollars},
-      {name: 'Fives', value: safe.Fives},
-      {name: 'Tens', value: safe.Tens},
-      {name: 'Large Bills', value: safe['Large Bills']},
-    ];
-    postStoreCount(store, count)
-      .then(res => console.log(res))
+  const handleCountDelete = (id) => {
+    deleteCount(id)
+      .then(() => getStoreCount(store).then(res => setPrevCounts(res)))
       .catch(err => console.log(err));
+    setActiveCount('');
+    handleCloseModal();
   }
 
   React.useEffect(() => {
@@ -165,7 +154,7 @@ function Counts() {
           {prevCounts.map(count => (
               <Accordion.Item eventKey={count._id} key={count._id}>
                 <Accordion.Header>
-                  {count.date}
+                  {convertDateToString(count.date)}
                 </Accordion.Header>
                 <Accordion.Body className='counts__value'>
                   <div className='counts__coin'>
@@ -184,7 +173,10 @@ function Counts() {
                   <button
                     type='button'
                     className='counts__delete'
-                    onClick={handleOpenModal}
+                    onClick={() => {
+                      handleOpenModal();
+                      setActiveCount(count._id);
+                    }}
                   >
                     Delete
                   </button>
@@ -195,6 +187,7 @@ function Counts() {
         <DeletePopup 
           isOpen={isOpen}
           handleClose={handleCloseModal}
+          handleSubmit={() => handleCountDelete(activeCount)}
         />
       </div>
       )} 

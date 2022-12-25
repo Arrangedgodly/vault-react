@@ -33,10 +33,11 @@ export const deleteCount = (id) => {
     method: 'DELETE',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
+      'Access-Control-Allow-Origin': true
     },
-    body: {
+    body: JSON.stringify({
       _id: id
-    }
+    })
   })
     .then(checkResponse);
 }

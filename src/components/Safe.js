@@ -2,11 +2,15 @@ import React from "react";
 import Buttons from "./Buttons";
 import ButtonsAlt from "./ButtonsAlt";
 import { buttonsData } from "../utils/constants";
+import { postStoreCount } from "../utils/api";
 import { CurrentSafeTotalContext } from "../contexts/CurrentSafeTotalContext";
+import { CurrentStoreContext } from "../contexts/CurrentStoreContext";
 import ResetPopup from "./ResetPopup";
 
 function Safe() {
   const safe = React.useContext(CurrentSafeTotalContext);
+  const store = React.useContext(CurrentStoreContext);
+  
   const totalArray = Object.keys(safe);
   const [safeTotal, setSafeTotal] = React.useState(0);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -31,6 +35,22 @@ function Safe() {
 
   const handleCloseModal = () => {
     setIsOpen(false);
+  }
+
+  const handlePostStoreCount = () => {
+    const count = [
+      {name: 'Pennies', value: safe.Pennies},
+      {name: 'Nickels', value: safe.Nickels},
+      {name: 'Dimes', value: safe.Dimes},
+      {name: 'Quarters', value: safe.Quarters},
+      {name: 'Dollars', value: safe.Dollars},
+      {name: 'Fives', value: safe.Fives},
+      {name: 'Tens', value: safe.Tens},
+      {name: 'Large Bills', value: safe['Large Bills']},
+    ];
+    postStoreCount(store, count)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   }
 
   return (
@@ -70,6 +90,7 @@ function Safe() {
           <button
             type="button"
             className="footer__button"
+            onClick={handlePostStoreCount}
           >
             Submit
           </button>
