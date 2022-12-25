@@ -1,6 +1,6 @@
 import Popup from "./Popup";
 
-function DeletePopup({ isOpen, handleClose }) {
+function DeletePopup({ isOpen, handleClose, handleSubmit }) {
   return (
     <Popup
       modalTitle="Delete Confirmation"
@@ -8,6 +8,7 @@ function DeletePopup({ isOpen, handleClose }) {
       modalButtonText="Delete Count"
       isOpen={isOpen}
       handleClose={handleClose}
+      handleSubmit={handleSubmit}
     />
   );
 }

@@ -3,11 +3,13 @@ import Buttons from "./Buttons";
 import ButtonsAlt from "./ButtonsAlt";
 import { buttonsData } from "../utils/constants";
 import { CurrentSafeTotalContext } from "../contexts/CurrentSafeTotalContext";
+import ResetPopup from "./ResetPopup";
 
 function Safe() {
   const safe = React.useContext(CurrentSafeTotalContext);
   const totalArray = Object.keys(safe);
   const [safeTotal, setSafeTotal] = React.useState(0);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const handleSafeTotal = () => {
     let total = 0;
@@ -20,6 +22,15 @@ function Safe() {
   const handleReset = () => {
     localStorage.clear();
     window.location.reload();
+    handleCloseModal();
+  }
+
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  }
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
   }
 
   return (
@@ -65,12 +76,17 @@ function Safe() {
           <button
             type="button"
             className="footer__button"
-            onClick={handleReset}
+            onClick={handleOpenModal}
           >
             Reset
           </button>
         </div>
       </div>
+      <ResetPopup
+        isOpen={isOpen}
+        handleClose={handleCloseModal}
+        handleSubmit={handleReset}
+      />
     </form>
   );
 }
