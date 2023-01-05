@@ -1,4 +1,4 @@
-const baseUrl = 'http://api.vault.graydonwasil.com';
+const baseUrl = 'https://api.vault.graydonwasil.com';
 
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error ${res.status}`);
