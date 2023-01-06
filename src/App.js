@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Counts from "./components/Counts";
+import About from "./components/About";
 import { Routes, Route } from "react-router-dom";
 import React from "react";
 import { CurrentSafeTotalContext } from "./contexts/CurrentSafeTotalContext";
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/counts" element={<Counts handleInput={handleInput}/>} />
+            <Route path='/about' element={<About /> } />
           </Routes>
         </div>
       </CurrentSafeTotalContext.Provider>

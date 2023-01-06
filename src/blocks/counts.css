@@ -72,3 +72,13 @@
   margin-top: 1vh;
   font-size: 3vw;
 }
+
+@media screen and (max-width: 720px) {
+  .counts__value {
+    font-size: 3vw;
+  }
+
+  .counts__delete {
+    font-size: 3.75vw;
+  }
+}
