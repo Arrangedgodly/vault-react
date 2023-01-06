@@ -24,7 +24,9 @@ function Safe() {
   };
 
   const handleReset = () => {
+    let storeTemp = localStorage.getItem('store');
     localStorage.clear();
+    localStorage.setItem('store', storeTemp);
     window.location.reload();
     handleCloseModal();
   }
@@ -49,7 +51,10 @@ function Safe() {
       {name: 'Large Bills', value: safe['Large Bills']},
     ];
     postStoreCount(store, count)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res);
+        handleReset();
+      })
       .catch(err => console.log(err));
   }
 

@@ -33,7 +33,7 @@ function Counts({ handleInput }) {
 
   React.useEffect(() => {
     getStoreCount(store)
-      .then(res => setPrevCounts(res))
+      .then(res => setPrevCounts(res.reverse()))
       .catch(err => console.log(err));
   }, [store])
 
