@@ -43,56 +43,17 @@ function Counts({ handleInput }) {
       <form  className='counts__form'>
         <h3 className='counts__header'>Pick your Store:</h3>
         <label
-          htmlFor='Quincy'
+          htmlFor='Broadmoor'
           className='counts__label'
         >
           <input
             type='radio'
-            value='Quincy'
+            value='Broadmoor'
             className='counts__input'
             name='store'
             onChange={handleInput}
           />
-          Quincy
-        </label>
-        <label
-          htmlFor='Sheridan'
-          className='counts__label'
-        >
-          <input
-            type='radio'
-            value='Sheridan'
-            className='counts__input'
-            name='store'
-            onChange={handleInput}
-          />
-          Sheridan
-        </label>
-        <label
-          htmlFor='Northfield'
-          className='counts__label'
-        >
-          <input
-            type='radio'
-            value='Northfield'
-            className='counts__input'
-            name='store'
-            onChange={handleInput}
-          />
-          Northfield
-        </label>
-        <label
-          htmlFor='Littleton'
-          className='counts__label'
-        >
-          <input
-            type='radio'
-            value='Littleton'
-            className='counts__input'
-            name='store'
-            onChange={handleInput}
-          />
-          Littleton
+          Broadmoor
         </label>
         <label
           htmlFor='Colfax'
@@ -121,6 +82,19 @@ function Counts({ handleInput }) {
           Fraser
         </label>
         <label
+          htmlFor='Littleton'
+          className='counts__label'
+        >
+          <input
+            type='radio'
+            value='Littleton'
+            className='counts__input'
+            name='store'
+            onChange={handleInput}
+          />
+          Littleton
+        </label>
+        <label
           htmlFor='Nederlands'
           className='counts__label'
         >
@@ -134,17 +108,56 @@ function Counts({ handleInput }) {
           Nederlands
         </label>
         <label
-          htmlFor='GotG'
+          htmlFor='Northfield'
           className='counts__label'
         >
           <input
             type='radio'
-            value='GotG'
+            value='Northfield'
             className='counts__input'
             name='store'
             onChange={handleInput}
           />
-          Garden of the Gods
+          Northfield
+        </label>
+        <label
+          htmlFor='Quincy'
+          className='counts__label'
+        >
+          <input
+            type='radio'
+            value='Quincy'
+            className='counts__input'
+            name='store'
+            onChange={handleInput}
+          />
+          Quincy
+        </label>
+        <label
+          htmlFor='Rockrimmon'
+          className='counts__label'
+        >
+          <input
+            type='radio'
+            value='Rockrimmon'
+            className='counts__input'
+            name='store'
+            onChange={handleInput}
+          />
+          Rockrimmon
+        </label>
+        <label
+          htmlFor='Sheridan'
+          className='counts__label'
+        >
+          <input
+            type='radio'
+            value='Sheridan'
+            className='counts__input'
+            name='store'
+            onChange={handleInput}
+          />
+          Sheridan
         </label>
       </form>
       ) : (
