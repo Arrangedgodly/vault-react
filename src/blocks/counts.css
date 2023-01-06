@@ -7,7 +7,7 @@
 }
 
 .counts__header {
-  font-size: 4.5vw;
+  font-size: 3.5vw;
   margin: 1.5vh auto;
 }
 
@@ -37,12 +37,12 @@
   border: none;
   background-color: rgba(0,0,0,0);
   cursor: pointer;
-  font-size: 2.5vw;
+  font-size: 2vw;
   margin-bottom: 1vh;
 }
 
 .counts__value {
-  font-size: 2.75vw;
+  font-size: 2vw;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
@@ -70,5 +70,5 @@
   grid-column: 2;
   position: relative;
   margin-top: 1vh;
-  font-size: 4vw;
+  font-size: 3vw;
 }
